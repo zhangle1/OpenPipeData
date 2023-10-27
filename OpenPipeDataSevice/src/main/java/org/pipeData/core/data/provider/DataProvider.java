@@ -2,10 +2,13 @@ package org.pipeData.core.data.provider;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.pipeData.base.dto.ResponseData;
 import org.pipeData.core.base.AutoCloseBean;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
+import java.util.Set;
 
 public abstract class DataProvider extends AutoCloseBean {
     static ObjectMapper MAPPER = new ObjectMapper();
@@ -69,6 +72,5 @@ public abstract class DataProvider extends AutoCloseBean {
     public abstract Object test(DataProviderSource source) throws Exception;
 
 
-
-
+    public abstract Set<String> readAllDatabases(DataProviderSource source) throws SQLException;
 }

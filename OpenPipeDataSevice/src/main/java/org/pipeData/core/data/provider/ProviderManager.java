@@ -2,13 +2,16 @@ package org.pipeData.core.data.provider;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.pipeData.base.dto.ResponseData;
 import org.pipeData.core.base.exception.Exceptions;
 import org.pipeData.core.data.provider.optimize.DataProviderExecuteOptimizer;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.ServiceLoader;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
@@ -39,6 +42,11 @@ public class ProviderManager extends DataProviderExecuteOptimizer implements Dat
     @Override
     public Object testConnection(DataProviderSource source) throws Exception {
         return getDataProviderService(source.getType()).test(source);
+    }
+
+    @Override
+    public Set<String> readAllDatabases(DataProviderSource source) throws SQLException {
+        return getDataProviderService(source.getType()).readAllDatabases(source);
     }
 
 

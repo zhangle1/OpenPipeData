@@ -36,10 +36,10 @@ public class DataProviderController extends BaseController {
     }
 
     @Operation(description = "数据库列表")
-    @GetMapping(value = "/{sourceId}/databases")
-    public ResponseData<Set<String>> listDatabases(@PathVariable String sourceId) throws SQLException {
+    @PostMapping(value = "/databases")
+    public ResponseData<Set<String>> listDatabases(@RequestBody DataProviderSource config) throws SQLException {
 //        checkBlank(sourceId, "sourceId");
-        return ResponseData.success(Set.of("测试数据库列表"));
+        return ResponseData.success(dataProviderService.readAllDatabases(config));
     }
 
     @Operation(description = "获取所有表格")
@@ -59,8 +59,6 @@ public class DataProviderController extends BaseController {
 //
 //        return ResponseData.success(dataProviderService.readTableColumns(sourceId, database, table));
 //    }
-
-
 
 
 }

@@ -3,6 +3,7 @@ package org.pipeData.service;
 
 
 
+import org.pipeData.base.dto.ResponseData;
 import org.pipeData.core.data.provider.DataProviderSource;
 
 import java.io.IOException;
@@ -16,7 +17,5 @@ public interface DataProviderService {
     Object testConnection(DataProviderSource source) throws Exception;
 
 
-
-
-
+    Set<String> readAllDatabases(DataProviderSource config) throws SQLException;
 }

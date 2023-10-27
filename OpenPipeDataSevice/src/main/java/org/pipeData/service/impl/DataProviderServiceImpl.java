@@ -2,6 +2,7 @@ package org.pipeData.service.impl;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.pipeData.base.dto.ResponseData;
 import org.pipeData.core.data.provider.DataProviderManager;
 import org.pipeData.core.data.provider.DataProviderSource;
 import org.pipeData.service.BaseService;
@@ -9,7 +10,9 @@ import org.pipeData.service.DataProviderService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.sql.SQLException;
 import java.util.Map;
+import java.util.Set;
 
 @Slf4j
 @Service
@@ -34,5 +37,11 @@ public class DataProviderServiceImpl extends BaseService implements DataProvider
             }
         }
         return dataProviderManager.testConnection(source);
+    }
+
+    @Override
+    public Set<String> readAllDatabases(DataProviderSource config) throws SQLException {
+
+        return dataProviderManager.readAllDatabases(config);
     }
 }

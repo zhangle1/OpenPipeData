@@ -18,6 +18,8 @@
 
 package org.pipeData.core.data.provider;
 
+import org.pipeData.base.dto.ResponseData;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -29,5 +31,5 @@ public interface DataProviderManager {
     Object testConnection(DataProviderSource source) throws Exception;
 
 
-
+    Set<String> readAllDatabases(DataProviderSource config) throws SQLException;
 }
