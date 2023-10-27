@@ -1,0 +1,17 @@
+2023-10-27 15:56:54.274 [background-preinit] INFO  org.hibernate.validator.internal.util.Version : HV000001: Hibernate Validator 8.0.1.Final
+2023-10-27 15:56:54.298 [main] INFO  org.pipeData.OpenPipeDataApplication : Starting OpenPipeDataApplication using Java 17.0.9 with PID 45524 (D:\项目\OpenPipeData\OpenPipeDataSevice\target\classes started by Administrator in D:\项目\OpenPipeData)
+2023-10-27 15:56:54.298 [main] INFO  org.pipeData.OpenPipeDataApplication : No active profile set, falling back to 1 default profile: "default"
+2023-10-27 15:56:55.048 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 8081 (http)
+2023-10-27 15:56:55.054 [main] INFO  org.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8081"]
+2023-10-27 15:56:55.055 [main] INFO  org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2023-10-27 15:56:55.055 [main] INFO  org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-27 15:56:55.115 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2023-10-27 15:56:55.115 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 792 ms
+2023-10-27 15:56:55.213 [main] WARN  o.s.core.LocalVariableTableParameterNameDiscoverer : Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: org.pipeData.config.SwaggerConfiguration
+2023-10-27 15:56:55.314 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver : Exposing 13 endpoint(s) beneath base path '/rest/actuator'
+2023-10-27 15:56:55.538 [main] INFO  org.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8081"]
+2023-10-27 15:56:55.550 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 8081 (http) with context path ''
+2023-10-27 15:56:55.558 [main] INFO  org.pipeData.OpenPipeDataApplication : Started OpenPipeDataApplication in 1.625 seconds (process running for 2.011)
+2023-10-27 15:56:55.802 [RMI TCP Connection(2)-192.168.1.74] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-27 15:56:55.802 [RMI TCP Connection(2)-192.168.1.74] INFO  org.springframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2023-10-27 15:56:55.803 [RMI TCP Connection(2)-192.168.1.74] INFO  org.springframework.web.servlet.DispatcherServlet : Completed initialization in 1 ms
