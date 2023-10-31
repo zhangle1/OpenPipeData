@@ -49,6 +49,18 @@ public class ProviderManager extends DataProviderExecuteOptimizer implements Dat
         return getDataProviderService(source.getType()).readAllDatabases(source);
     }
 
+    @Override
+    public Set<String> readTables(DataProviderSource source, String database) throws SQLException {
+        return getDataProviderService(source.getType()).readTables(source,database);
+    }
+
+    @Override
+    public Set<Column> readTableColumns(DataProviderSource source) throws SQLException {
+        return getDataProviderService(source.getType()).readTableColumns(source);
+    }
+
+
+
 
     private DataProvider getDataProviderService(String type) {
         DataProvider dataProvider = getDataProviders().get(type);

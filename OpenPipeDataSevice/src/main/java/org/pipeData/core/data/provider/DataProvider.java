@@ -73,4 +73,8 @@ public abstract class DataProvider extends AutoCloseBean {
 
 
     public abstract Set<String> readAllDatabases(DataProviderSource source) throws SQLException;
+
+    public abstract Set<String> readTables(DataProviderSource source, String database) throws SQLException;
+
+    public abstract Set<Column> readTableColumns(DataProviderSource source) throws SQLException;
 }

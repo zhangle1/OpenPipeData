@@ -15,6 +15,10 @@ public class DataProviderSource {
 
     private String name;
 
+    private String database;
+
+    private String table;
+
     private Map<String, Object> properties;
 
 }

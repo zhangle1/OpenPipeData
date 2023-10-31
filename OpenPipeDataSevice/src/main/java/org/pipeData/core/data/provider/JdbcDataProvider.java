@@ -3,6 +3,10 @@ package org.pipeData.core.data.provider;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
+import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.pipeData.core.base.exception.Exceptions;
@@ -71,7 +75,23 @@ public class JdbcDataProvider  extends  DataProvider{
     @Override
     public Set<String> readAllDatabases(DataProviderSource source) throws SQLException {
         JdbcDataProviderAdapter adapter = matchProviderAdapter(source);
-        return adapter.readAllDatabases();
+
+        //排序
+        return Sets.newLinkedHashSet(Ordering.natural().sortedCopy(adapter.readAllDatabases()));
+    }
+
+    @Override
+    public Set<String> readTables(DataProviderSource source, String database) throws SQLException {
+
+        JdbcDataProviderAdapter adapter = matchProviderAdapter(source);
+        return Sets.newLinkedHashSet(Ordering.natural().sortedCopy(adapter.readAllTables(database)));
+    }
+
+    @Override
+    public Set<Column> readTableColumns(DataProviderSource source) throws SQLException {
+        JdbcDataProviderAdapter adapter = matchProviderAdapter(source);
+
+        return adapter.readTableColumn(source);
     }
 
 

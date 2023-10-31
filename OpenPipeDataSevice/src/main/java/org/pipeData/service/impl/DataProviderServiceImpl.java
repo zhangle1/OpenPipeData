@@ -3,6 +3,7 @@ package org.pipeData.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.pipeData.base.dto.ResponseData;
+import org.pipeData.core.data.provider.Column;
 import org.pipeData.core.data.provider.DataProviderManager;
 import org.pipeData.core.data.provider.DataProviderSource;
 import org.pipeData.service.BaseService;
@@ -43,5 +44,15 @@ public class DataProviderServiceImpl extends BaseService implements DataProvider
     public Set<String> readAllDatabases(DataProviderSource config) throws SQLException {
 
         return dataProviderManager.readAllDatabases(config);
+    }
+
+    @Override
+    public Set<String> readTables(DataProviderSource config) throws SQLException {
+        return dataProviderManager.readTables(config,config.getDatabase());
+    }
+
+    @Override
+    public Set<Column> readTableColumns(DataProviderSource config) throws SQLException {
+        return dataProviderManager.readTableColumns(config);
     }
 }

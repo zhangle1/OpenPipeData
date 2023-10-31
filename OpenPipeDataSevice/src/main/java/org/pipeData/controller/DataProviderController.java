@@ -3,6 +3,7 @@ package org.pipeData.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import org.pipeData.base.dto.ResponseData;
+import org.pipeData.core.data.provider.Column;
 import org.pipeData.core.data.provider.DataProviderSource;
 import org.pipeData.service.DataProviderService;
 import org.springframework.web.bind.annotation.*;
@@ -43,12 +44,20 @@ public class DataProviderController extends BaseController {
     }
 
     @Operation(description = "获取所有表格")
-    @GetMapping(value = "/{sourceId}/{database}/tables")
-    public ResponseData<Set<String>> listTables(@PathVariable String sourceId,
-                                                @PathVariable String database) throws SQLException {
+    @PostMapping(value = "/tables")
+    public ResponseData<Set<String>> listTables(@RequestBody DataProviderSource config) throws SQLException {
 //        checkBlank(sourceId, "sourceId");
 //        checkBlank(database, "database");
-        return ResponseData.success(Set.of("测试获取所有数据表"));
+        return ResponseData.success(dataProviderService.readTables(config));
+    }
+
+
+    @Operation(description = "获取表格信息")
+    @PostMapping(value = "/columns")
+    public ResponseData<Set<Column>>getTableInfo(
+            @RequestBody DataProviderSource config
+    ) throws SQLException {
+        return ResponseData.success(dataProviderService.readTableColumns(config));
     }
 
 //    @Operation(description = "获取所有表格信息")

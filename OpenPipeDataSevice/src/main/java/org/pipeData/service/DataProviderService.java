@@ -4,6 +4,7 @@ package org.pipeData.service;
 
 
 import org.pipeData.base.dto.ResponseData;
+import org.pipeData.core.data.provider.Column;
 import org.pipeData.core.data.provider.DataProviderSource;
 
 import java.io.IOException;
@@ -18,4 +19,9 @@ public interface DataProviderService {
 
 
     Set<String> readAllDatabases(DataProviderSource config) throws SQLException;
+
+    Set<String> readTables(DataProviderSource config) throws SQLException;
+
+
+    Set<Column> readTableColumns(DataProviderSource config) throws SQLException;
 }

@@ -18,21 +18,15 @@
 
 package org.pipeData.core.data.provider;
 
-import org.pipeData.base.dto.ResponseData;
+import lombok.Data;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Set;
+@Data
+public class ForeignKey {
 
-public interface DataProviderManager {
+    private String database;
 
-    Object testConnection(DataProviderSource source) throws Exception;
+    private String table;
 
-    Set<String> readAllDatabases(DataProviderSource config) throws SQLException;
-
-    Set<String> readTables(DataProviderSource config, String database) throws SQLException;
-
-    Set<Column> readTableColumns(DataProviderSource source) throws SQLException;
+    private String column;
 
 }

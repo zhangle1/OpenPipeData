@@ -1,8 +1,6 @@
 package org.pipeData;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+
 import org.pipeData.config.condition.OpenBrowserCondition;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
