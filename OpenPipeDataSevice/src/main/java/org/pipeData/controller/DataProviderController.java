@@ -16,7 +16,6 @@ import java.util.Set;
 @RequestMapping(value = "/data-provider")
 public class DataProviderController extends BaseController {
 
-
     private final DataProviderService dataProviderService;
 
 
