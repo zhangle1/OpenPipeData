@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/openpipedata?&allowMultiQueries=true&characterEncoding=utf-8
+    username: "root"
+    password: "qq123123"
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/master.xml
+
+
