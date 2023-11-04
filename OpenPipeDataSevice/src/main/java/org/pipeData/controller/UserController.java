@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.pipeData.base.dto.ResponseData;
 import org.pipeData.core.base.annotations.SkipLogin;
 import org.pipeData.core.entity.UserBaseInfo;
+import org.pipeData.server.base.params.UserLoginParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,7 @@ public class UserController  extends BaseController{
     public ResponseData<UserBaseInfo> login(@RequestBody UserLoginParam loginParam,
                                             HttpServletResponse response) {
 
-
+        return ResponseData.success(new UserBaseInfo());
 
 
     }

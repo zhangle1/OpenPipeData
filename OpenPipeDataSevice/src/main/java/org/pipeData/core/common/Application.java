@@ -33,7 +33,17 @@ public class Application  implements ApplicationContextAware {
         return context.getEnvironment().getProperty(key);
     }
 
+    public static String getProperty(String key, String defaultVal) {
+        return context.getEnvironment().getProperty(key, defaultVal);
+    }
+
+
     public static String userDir() {
         return StringUtils.removeEnd(System.getProperty("user.dir"), "/");
     }
+
+    public static String getServerPrefix() {
+        return getProperty("server.servlet.context-path","/");
+    }
+
 }

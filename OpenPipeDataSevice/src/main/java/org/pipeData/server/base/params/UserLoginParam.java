@@ -21,6 +21,7 @@ package org.pipeData.server.base.params;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import org.pipeData.core.base.consts.Const;
 
 
 @Data
