@@ -3,5 +3,6 @@
      xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
     <include file="db/changelog/migration/_0.1.0_migrate.sql" /> 
+    <include file="db/changelog/migration/_0.2.0_migrate_user_tabel_and_feed_data.sql" />
 
 </databaseChangeLog>

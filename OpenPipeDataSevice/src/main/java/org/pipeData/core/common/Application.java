@@ -46,4 +46,10 @@ public class Application  implements ApplicationContextAware {
         return getProperty("server.servlet.context-path","/");
     }
 
+
+    public static String getTokenSecret() {
+        return getProperty("pipeData.security.token.secret", "d@a$t%a^r&a*t");
+    }
+
+
 }
