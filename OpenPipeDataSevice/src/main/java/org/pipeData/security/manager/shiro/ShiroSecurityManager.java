@@ -35,7 +35,7 @@ public class ShiroSecurityManager implements OpenPipeSecurityManager {
 
 
     final MessageResolver messageResolver;
-//    private final UserMapperExt userMapper;
+    //    private final UserMapperExt userMapper;
     private final PermissionDataCache permissionDataCache;
 
     private final SecurityManager securityManager;
@@ -51,7 +51,9 @@ public class ShiroSecurityManager implements OpenPipeSecurityManager {
     @Override
     public void login(PasswordToken token) throws RuntimeException {
         logoutCurrent();
-        User user = userMapper.selectByNameOrEmail(token.getSubject());
+        User user = new User();
+        // TODO: 2023/11/8
+//        User user = userMapper.selectByNameOrEmail(token.getSubject());
         if (user == null) {
             Exceptions.tr(BaseException.class, "login.fail");
         }
@@ -70,7 +72,9 @@ public class ShiroSecurityManager implements OpenPipeSecurityManager {
 
     @Override
     public boolean validateUser(String username, String password) throws AuthException {
-        User user = userMapper.selectByNameOrEmail(username);
+//        User user = userMapper.selectByNameOrEmail(username);
+        // TODO: 2023/11/8
+        User user = new User();
         if (user == null) {
             return false;
         }
@@ -84,7 +88,9 @@ public class ShiroSecurityManager implements OpenPipeSecurityManager {
         if (!JwtUtils.validTimeout(jwtToken)) {
             Exceptions.tr(AuthException.class, "login.session.timeout");
         }
-        User user = userMapper.selectByNameOrEmail(jwtToken.getSubject());
+//        User user = userMapper.selectByNameOrEmail(jwtToken.getSubject());
+        // TODO: 2023/11/8
+        User user = new User();
         if (user == null) {
             Exceptions.tr(AuthException.class, "login.session.timeout");
         }
@@ -246,7 +252,9 @@ public class ShiroSecurityManager implements OpenPipeSecurityManager {
     @Override
     public void runAs(String userNameOrEmail) {
         ThreadContext.unbindSubject();
-        User user = userMapper.selectByNameOrEmail(userNameOrEmail);
+        // TODO: 2023/11/8
+        User user = new User();
+//        User user = userMapper.selectByNameOrEmail(userNameOrEmail);
         login(JwtUtils.toJwtString(JwtUtils.createJwtToken(user)));
     }
 

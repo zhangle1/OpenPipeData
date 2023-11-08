@@ -1,6 +1,7 @@
 package org.pipeData;
 
 
+//import org.mybatis.spring.annotation.MapperScan;
 import org.pipeData.config.condition.OpenBrowserCondition;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +22,7 @@ import java.net.URI;
 @Configuration
 @EnableWebMvc
 @SpringBootApplication(scanBasePackages = {"org.pipeData"})
+//@MapperScan("org.pipeData.core.mappers")
 public class OpenPipeDataApplication implements ApplicationListener<ContextRefreshedEvent> {
 
     @Value("${server.port}")

@@ -68,7 +68,9 @@ public class OpenPipeRealmData extends AuthorizingRealm {
         }
 
         String username = getUsername(token);
-        User user = userMapper.selectByNameOrEmail(username);
+//        User user = userMapper.selectByNameOrEmail(username);
+        // TODO: 2023/11/8
+        User user = new User();
         if (user == null)
             return null;
         authenticationInfo = new SimpleAuthenticationInfo(user, user.getPassword(), getName());
