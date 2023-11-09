@@ -38,14 +38,14 @@ public class ShiroSecurityManager implements OpenPipeSecurityManager {
     //    private final UserMapperExt userMapper;
     private final PermissionDataCache permissionDataCache;
 
-    private final SecurityManager securityManager;
+//    private final SecurityManager securityManager;
 
     public ShiroSecurityManager(MessageResolver messageResolver,
-                                PermissionDataCache permissionDataCache,
-                                SecurityManager securityManager) {
+                                PermissionDataCache permissionDataCache
+                                ) {
         this.messageResolver = messageResolver;
         this.permissionDataCache = permissionDataCache;
-        this.securityManager = securityManager;
+//        this.securityManager = securityManager;
     }
 
     @Override
@@ -323,6 +323,6 @@ public class ShiroSecurityManager implements OpenPipeSecurityManager {
 
     @PostConstruct
     public void initSecurityManager() {
-        SecurityUtils.setSecurityManager(securityManager);
+//        SecurityUtils.setSecurityManager(securityManager);
     }
 }
