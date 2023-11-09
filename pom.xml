@@ -64,70 +64,9 @@
   </properties>
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter</artifactId>
-        <version>3.1.4</version>
-        <exclusions>
-          <exclusion>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-logging</artifactId>
-        <version>3.1.4</version>
-        <exclusions>
-          <exclusion>
-            <artifactId>log4j-api</artifactId>
-            <groupId>org.apache.logging.log4j</groupId>
-          </exclusion>
-          <exclusion>
-            <artifactId>log4j-to-slf4j</artifactId>
-            <groupId>org.apache.logging.log4j</groupId>
-          </exclusion>
-        </exclusions>
-      </dependency>
 
 
 
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-        <version>3.1.4</version>
-
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-commons</artifactId>
-        <version>3.1.4</version>
-
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-actuator</artifactId>
-        <version>3.1.4</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-validation</artifactId>
-        <version>3.1.4</version>
-      </dependency>
-
-      <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-classic</artifactId>
-        <version>1.4.11</version>
-      </dependency>
-      <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-core</artifactId>
-        <version>1.4.11</version>
-      </dependency>
-
-      <!-- avoid security issue https://security.snyk.io/vuln/SNYK-JAVA-ORGYAML-2806360 -->
     </dependencies>
   </dependencyManagement>
 
@@ -289,35 +228,35 @@
           <artifactId>maven-site-plugin</artifactId>
           <version>3.12.1</version>
         </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <version>${maven-dependency-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>com.theoryinpractise</groupId>
-          <artifactId>googleformatter-maven-plugin</artifactId>
-          <version>1.7.5</version>
-          <executions>
-            <execution>
-              <id>reformat-sources</id>
-              <configuration>
-                <includeStale>false</includeStale>
-                <style>GOOGLE</style>
-                <formatMain>true</formatMain>
-                <formatTest>true</formatTest>
-                <filterModified>false</filterModified>
-                <skip>false</skip>
-                <fixImports>true</fixImports>
-                <maxLineLength>120</maxLineLength>
-              </configuration>
-              <goals>
-                <goal>format</goal>
-              </goals>
-              <phase>process-sources</phase>
-            </execution>
-          </executions>
-        </plugin>
+<!--        <plugin>-->
+<!--          <groupId>org.apache.maven.plugins</groupId>-->
+<!--          <artifactId>maven-dependency-plugin</artifactId>-->
+<!--          <version>${maven-dependency-plugin.version}</version>-->
+<!--        </plugin>-->
+<!--        <plugin>-->
+<!--          <groupId>com.theoryinpractise</groupId>-->
+<!--          <artifactId>googleformatter-maven-plugin</artifactId>-->
+<!--          <version>1.7.5</version>-->
+<!--          <executions>-->
+<!--            <execution>-->
+<!--              <id>reformat-sources</id>-->
+<!--              <configuration>-->
+<!--                <includeStale>false</includeStale>-->
+<!--                <style>GOOGLE</style>-->
+<!--                <formatMain>true</formatMain>-->
+<!--                <formatTest>true</formatTest>-->
+<!--                <filterModified>false</filterModified>-->
+<!--                <skip>false</skip>-->
+<!--                <fixImports>true</fixImports>-->
+<!--                <maxLineLength>120</maxLineLength>-->
+<!--              </configuration>-->
+<!--              <goals>-->
+<!--                <goal>format</goal>-->
+<!--              </goals>-->
+<!--              <phase>process-sources</phase>-->
+<!--            </execution>-->
+<!--          </executions>-->
+<!--        </plugin>-->
         <plugin>
            <groupId>org.apache.maven.plugins</groupId>
            <artifactId>maven-checkstyle-plugin</artifactId>

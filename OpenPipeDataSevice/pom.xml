@@ -3,11 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.openPipeData</groupId>
-        <artifactId>platform</artifactId>
-        <version>3.1.7-SNAPSHOT</version>
-    </parent>
+<!--    <parent>-->
+<!--        <groupId>org.openPipeData</groupId>-->
+<!--        <artifactId>platform</artifactId>-->
+<!--        <version>3.1.7-SNAPSHOT</version>-->
+<!--    </parent>-->
 
     <artifactId>OpenPipeDataService</artifactId>
     <name>${project.artifactId}</name>
@@ -21,9 +21,14 @@
             <artifactId>spring-boot-starter</artifactId>
             <version>3.1.4</version>
             <exclusions>
+
                 <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
+                    <artifactId>log4j-api</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j-to-slf4j</artifactId>
+                    <groupId>org.apache.logging.log4j</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -43,7 +48,7 @@
             </exclusions>
         </dependency>
 
-        <!--        安全相关-->
+<!--        &lt;!&ndash;        安全相关&ndash;&gt;-->
 
         <dependency>
             <groupId>org.apache.shiro</groupId>
@@ -55,16 +60,7 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-crypto</artifactId>
             <version>6.0.2</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>log4j-api</artifactId>
-                    <groupId>org.apache.logging.log4j</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>log4j-to-slf4j</artifactId>
-                    <groupId>org.apache.logging.log4j</groupId>
-                </exclusion>
-            </exclusions>
+
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
@@ -98,35 +94,17 @@
             <version>1.68</version>
         </dependency>
 
-        <!--        数据库连接-->
-<!--        <dependency>-->
-<!--            <groupId>com.baomidou</groupId>-->
-<!--            <artifactId>mybatis-plus-boot-starter</artifactId>-->
-<!--            <version>3.5.4.1</version>-->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <artifactId>log4j-api</artifactId>-->
-<!--                    <groupId>org.apache.logging.log4j</groupId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <artifactId>log4j-to-slf4j</artifactId>-->
-<!--                    <groupId>org.apache.logging.log4j</groupId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-<!--        </dependency>-->
 
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>3.1.4</version>
-
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
             <version>3.1.4</version>
-
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -142,22 +120,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
             <version>3.1.4</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>log4j-api</artifactId>
-                    <groupId>org.apache.logging.log4j</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>log4j-to-slf4j</artifactId>
-                    <groupId>org.apache.logging.log4j</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
-
-        <!--        <dependency>-->
-        <!--            <groupId>com.fasterxml.jackson.dataformat</groupId>-->
-        <!--            <artifactId>jackson-dataformat-xml</artifactId>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -185,10 +148,10 @@
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
+            <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.2.4</version>
-            <scope>compile</scope>
         </dependency>
+
 
         <dependency>
             <groupId>mysql</groupId>
@@ -200,7 +163,6 @@
             <artifactId>mssql-jdbc</artifactId>
             <version>11.2.1.jre8</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.apache.calcite</groupId>
@@ -220,24 +182,25 @@
 <!--            <scope>compile</scope>-->
 <!--        </dependency>-->
 
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.20.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.20.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.20.0</version>
-        </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>ch.qos.logback</groupId>-->
+<!--            <artifactId>logback-classic</artifactId>-->
+<!--            <version>1.4.11</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>ch.qos.logback</groupId>-->
+<!--            <artifactId>logback-core</artifactId>-->
+<!--            <version>1.4.11</version>-->
+<!--        </dependency>-->
 
+        <!--        数据库连接-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.baomidou</groupId>-->
+        <!--            <artifactId>mybatis-plus-boot-starter</artifactId>-->
+        <!--            <version>3.5.4.1</version>-->
 
+        <!--        </dependency>-->
     </dependencies>
 
 
