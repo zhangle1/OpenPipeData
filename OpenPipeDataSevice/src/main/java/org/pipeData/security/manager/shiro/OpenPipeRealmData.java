@@ -1,5 +1,6 @@
 package org.pipeData.security.manager.shiro;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -13,6 +14,8 @@ import org.pipeData.security.util.JwtUtils;
 
 import java.util.List;
 
+
+@Slf4j
 public class OpenPipeRealmData extends AuthorizingRealm {
 
     private final PasswordCredentialsMatcher passwordCredentialsMatcher;

@@ -2,11 +2,10 @@ package org.pipeData.service.impl;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.pipeData.base.dto.ResponseData;
+import org.pipeData.common.MessageResolver;
 import org.pipeData.core.data.provider.Column;
 import org.pipeData.core.data.provider.DataProviderManager;
 import org.pipeData.core.data.provider.DataProviderSource;
-import org.pipeData.service.BaseService;
 import org.pipeData.service.DataProviderService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -17,7 +16,7 @@ import java.util.Set;
 
 @Slf4j
 @Service
-public class DataProviderServiceImpl extends BaseService implements DataProviderService {
+public class DataProviderServiceImpl extends MessageResolver implements DataProviderService {
 
 
     private final DataProviderManager dataProviderManager;

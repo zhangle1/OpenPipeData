@@ -14,13 +14,13 @@ public class BaseEntity implements Serializable {
 
     private String id;
 
-    private String createdBy;
+    private String createBy;
 
-    private Date createdTime;
+    private Date createTime;
 
-    private String updatedBy;
+    private String updateBy;
 
-    private Date updatedTime;
+    private Date updateTime;
 
     private Integer permission;
 

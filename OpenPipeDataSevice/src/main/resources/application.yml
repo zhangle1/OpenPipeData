@@ -9,6 +9,7 @@ spring:
     username: "root"
     password: "qq123123"
 
+
 logging:
   level:
     datart:
@@ -48,3 +49,7 @@ server:
 openPipe:
     server:
       path-prefix:
+
+shiro:
+  web:
+    enabled: true

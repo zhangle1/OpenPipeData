@@ -23,6 +23,7 @@ import org.pipeData.security.exception.PermissionDeniedException;
 import org.pipeData.security.manager.OpenPipeSecurityManager;
 import org.pipeData.security.manager.PermissionDataCache;
 import org.pipeData.security.util.JwtUtils;
+import org.pipeData.service.IUserService;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
@@ -30,30 +31,33 @@ import javax.annotation.PostConstruct;
 import java.util.*;
 
 @Slf4j
-@Component(value = "pipeDataSecurityManager")
+@Component()
 public class ShiroSecurityManager implements OpenPipeSecurityManager {
 
-
+    @PostConstruct
+    public void initSecurityManager() {
+        SecurityUtils.setSecurityManager(securityManager);
+    }
     final MessageResolver messageResolver;
-    //    private final UserMapperExt userMapper;
+    private final IUserService userService;
     private final PermissionDataCache permissionDataCache;
 
-//    private final SecurityManager securityManager;
+
+    private final SecurityManager securityManager;
 
     public ShiroSecurityManager(MessageResolver messageResolver,
-                                PermissionDataCache permissionDataCache
-                                ) {
+                                IUserService userService, PermissionDataCache permissionDataCache,
+                                SecurityManager securityManager) {
         this.messageResolver = messageResolver;
+        this.userService = userService;
         this.permissionDataCache = permissionDataCache;
-//        this.securityManager = securityManager;
+        this.securityManager = securityManager;
     }
 
     @Override
     public void login(PasswordToken token) throws RuntimeException {
         logoutCurrent();
-        User user = new User();
-        // TODO: 2023/11/8
-//        User user = userMapper.selectByNameOrEmail(token.getSubject());
+       User user = userService.selectByNameOrEmail(token.getSubject());
         if (user == null) {
             Exceptions.tr(BaseException.class, "login.fail");
         }
@@ -88,9 +92,7 @@ public class ShiroSecurityManager implements OpenPipeSecurityManager {
         if (!JwtUtils.validTimeout(jwtToken)) {
             Exceptions.tr(AuthException.class, "login.session.timeout");
         }
-//        User user = userMapper.selectByNameOrEmail(jwtToken.getSubject());
-        // TODO: 2023/11/8
-        User user = new User();
+        User user = userService.selectByNameOrEmail(jwtToken.getSubject());
         if (user == null) {
             Exceptions.tr(AuthException.class, "login.session.timeout");
         }
@@ -252,9 +254,7 @@ public class ShiroSecurityManager implements OpenPipeSecurityManager {
     @Override
     public void runAs(String userNameOrEmail) {
         ThreadContext.unbindSubject();
-        // TODO: 2023/11/8
-        User user = new User();
-//        User user = userMapper.selectByNameOrEmail(userNameOrEmail);
+        User user = userService.selectByNameOrEmail(userNameOrEmail);
         login(JwtUtils.toJwtString(JwtUtils.createJwtToken(user)));
     }
 
@@ -321,8 +321,5 @@ public class ShiroSecurityManager implements OpenPipeSecurityManager {
     }
 
 
-    @PostConstruct
-    public void initSecurityManager() {
-//        SecurityUtils.setSecurityManager(securityManager);
-    }
+
 }

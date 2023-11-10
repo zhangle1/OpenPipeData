@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.pipeData.core.base.annotations.SkipLogin;
 import org.pipeData.core.base.exception.Exceptions;
 import org.pipeData.security.exception.AuthException;
+import org.pipeData.security.manager.OpenPipeSecurityManager;
 import org.springdoc.webmvc.api.MultipleOpenApiWebMvcResource;
 import org.springdoc.webmvc.ui.SwaggerConfigResource;
 import org.springframework.stereotype.Component;
@@ -14,10 +15,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
-
-    public LoginInterceptor() {
-
-
+    private final OpenPipeSecurityManager securityManager;
+    public LoginInterceptor(OpenPipeSecurityManager securityManager) {
+        this.securityManager = securityManager;
     }
 
     @Override
