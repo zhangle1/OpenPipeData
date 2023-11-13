@@ -43,7 +43,7 @@ public class JwkUtils {
 
     public static Jwt parseJwt(String token, String JwkSetFilePath) {
         List<Key> keys = JwkUtils.getJwKFromFile(JwkSetFilePath);
-        JwtParser parser = Jwts.parser();
+        JwtParserBuilder parser = Jwts.parser();
         Jwt jwt = null;
         for (Key key : keys) {
             try {
@@ -51,7 +51,7 @@ public class JwkUtils {
                 if (key instanceof ECPrivateKey) {
                     key = EcPrivateToPublic((BCECPrivateKey) key);
                 }
-                jwt = parser.setSigningKey(key).parse(token);
+                jwt = parser.setSigningKey(key).json(token);
                 break;
             } catch (ExpiredJwtException expired) {
                 log.info(expired.getMessage());

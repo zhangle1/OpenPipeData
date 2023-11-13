@@ -8,11 +8,9 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.pipeData.core.entity.User;
-import org.pipeData.security.base.RoleType;
+import org.pipeData.repository.IUserRepository;
 import org.pipeData.security.manager.PermissionDataCache;
 import org.pipeData.security.util.JwtUtils;
-
-import java.util.List;
 
 
 @Slf4j
@@ -20,13 +18,15 @@ public class OpenPipeRealmData extends AuthorizingRealm {
 
     private final PasswordCredentialsMatcher passwordCredentialsMatcher;
 
-
     private final PermissionDataCache permissionDataCache;
 
+    private final IUserRepository userRepository;
 
-    public OpenPipeRealmData(PasswordCredentialsMatcher passwordCredentialsMatcher, PermissionDataCache permissionDataCache) {
+
+    public OpenPipeRealmData(PasswordCredentialsMatcher passwordCredentialsMatcher, PermissionDataCache permissionDataCache, IUserRepository userRepository) {
         this.passwordCredentialsMatcher = passwordCredentialsMatcher;
         this.permissionDataCache = permissionDataCache;
+        this.userRepository = userRepository;
     }
 
 
@@ -71,9 +71,8 @@ public class OpenPipeRealmData extends AuthorizingRealm {
         }
 
         String username = getUsername(token);
-//        User user = userMapper.selectByNameOrEmail(username);
+        User user = userRepository.selectByNameOrEmail(username);
         // TODO: 2023/11/8
-        User user = new User();
         if (user == null)
             return null;
         authenticationInfo = new SimpleAuthenticationInfo(user, user.getPassword(), getName());
