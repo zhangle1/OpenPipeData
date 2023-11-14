@@ -41,30 +41,30 @@ public class JwkUtils {
         keyConverter.setProvider(provider);
     }
 
-    public static Jwt parseJwt(String token, String JwkSetFilePath) {
-        List<Key> keys = JwkUtils.getJwKFromFile(JwkSetFilePath);
-        JwtParserBuilder parser = Jwts.parser();
-        Jwt jwt = null;
-        for (Key key : keys) {
-            try {
-                // EC PrivateKey generate PublicKey
-                if (key instanceof ECPrivateKey) {
-                    key = EcPrivateToPublic((BCECPrivateKey) key);
-                }
-                jwt = parser.setSigningKey(key).json(token);
-                break;
-            } catch (ExpiredJwtException expired) {
-                log.info(expired.getMessage());
-                break;
-            } catch (JwtException ignore) {
-                log.warn(ignore.getMessage());
-            }
-        }
-        if (jwt == null) {
-            Exceptions.base("Jwt token parse failed");
-        }
-        return jwt;
-    }
+//    public static Jwt parseJwt(String token, String JwkSetFilePath) {
+//        List<Key> keys = JwkUtils.getJwKFromFile(JwkSetFilePath);
+//        JwtParserBuilder parser = Jwts.parser();
+//        Jwt jwt = null;
+//        for (Key key : keys) {
+//            try {
+//                // EC PrivateKey generate PublicKey
+//                if (key instanceof ECPrivateKey) {
+//                    key = EcPrivateToPublic((BCECPrivateKey) key);
+//                }
+//                jwt = parser.setSigningKey(key).build().(token);
+//                break;
+//            } catch (ExpiredJwtException expired) {
+//                log.info(expired.getMessage());
+//                break;
+//            } catch (JwtException ignore) {
+//                log.warn(ignore.getMessage());
+//            }
+//        }
+//        if (jwt == null) {
+//            Exceptions.base("Jwt token parse failed");
+//        }
+//        return jwt;
+//    }
 
     public static List<Key> getJwKFromFile(String JwkSetFilePath) {
         List<Key> keys = Lists.newArrayList();

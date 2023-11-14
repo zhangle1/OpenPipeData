@@ -45,8 +45,20 @@ server:
 
 
 openPipe:
-    server:
-      path-prefix:
+  server:
+    path-prefix:
+      #token配置
+#open-pipe:
+#  token:
+#        #是否有状态
+#        state: false
+#        #是否单用户登录
+#        single: false
+#        #单用户登录范围
+#        single-level: all
+#        #token签名
+#        #使用 @org.springblade.test.SignKeyGenerator 获取
+#        sign-key: 请配置32位签名
 
 shiro:
   web:

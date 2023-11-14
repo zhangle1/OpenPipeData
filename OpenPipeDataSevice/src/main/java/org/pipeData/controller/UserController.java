@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletResponse;
 import org.pipeData.base.dto.ResponseData;
 import org.pipeData.core.base.annotations.SkipLogin;
+import org.pipeData.core.base.consts.Const;
 import org.pipeData.core.entity.UserBaseInfo;
 import org.pipeData.security.base.PasswordToken;
 import org.pipeData.server.base.params.UserLoginParam;
@@ -36,10 +37,8 @@ public class UserController  extends BaseController{
                 loginParam.getPassword(),
                 System.currentTimeMillis());
         String token = userService.login(passwordToken);
-
-
-
-        return ResponseData.success(new UserBaseInfo());
+        response.setHeader(Const.TOKEN, token);
+        return ResponseData.success(new UserBaseInfo(securityManager.getCurrentUser()));
 
 
     }

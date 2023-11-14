@@ -3,6 +3,7 @@ package org.pipeData.security.util;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.pipeData.core.base.consts.Const;
 import org.pipeData.core.common.Application;
@@ -11,7 +12,10 @@ import org.pipeData.security.base.InviteToken;
 import org.pipeData.security.base.JwtToken;
 import org.pipeData.security.base.PasswordToken;
 
+import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
+import java.security.Key;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -44,11 +48,19 @@ public class JwtUtils {
         } else {
             claims.put(PASSWORD_HASH, token.getPwdHash());
         }
+        byte[] apiKeySecretBytes = Base64.getDecoder().decode(getBase64Security());
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+
+
         String jwt = Jwts.builder()
+                .setHeaderParam("typ", "JWT")
+                .setIssuer("OpenPipe")
+                .setAudience("OpenPipeService")
                 .setClaims(claims)
                 .setSubject(token.getSubject())
                 .setExpiration(token.getExp() != null ? token.getExp() : new Date(token.getCreateTime() + getSessionTimeout()))
-                .signWith(SignatureAlgorithm.HS256, Application.getTokenSecret().getBytes(StandardCharsets.UTF_8))
+                .signWith(signingKey)
                 .compact();
         return Const.TOKEN_HEADER_PREFIX + jwt;
     }
@@ -58,11 +70,16 @@ public class JwtUtils {
         claims.put(TOKEN_KEY_INVITER, token.getInviter());
         claims.put(TOKEN_KEY_USER_ID, token.getUserId());
         claims.put(TOKEN_KEY_ORG_ID, token.getOrgId());
+
+        byte[] apiKeySecretBytes = Base64.getDecoder().decode(getBase64Security());
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+
         String jwt = Jwts.builder()
                 .setClaims(claims)
                 .setSubject(token.getSubject())
                 .setExpiration(token.getExp() != null ? token.getExp() : new Date(token.getCreateTime() + VERIFY_CODE_TIMEOUT_MIN))
-                .signWith(SignatureAlgorithm.HS256, Application.getTokenSecret().getBytes(StandardCharsets.UTF_8))
+                .signWith(signingKey)
                 .compact();
         return Const.TOKEN_HEADER_PREFIX + jwt;
     }
@@ -120,6 +137,7 @@ public class JwtUtils {
     private static Claims getClaims(String token) {
         return Jwts.parser()
                 .setSigningKey(Application.getTokenSecret().getBytes(StandardCharsets.UTF_8))
+                .build()
                 .parseClaimsJws(token.trim())
                 .getBody();
     }
@@ -127,6 +145,13 @@ public class JwtUtils {
     private static long getSessionTimeout() {
         String timeout = Application.getProperty("pipeData.security.token.timeout-min", "30");
         return Long.parseLong(timeout) * 60 * 1000;
+    }
+
+
+
+
+    public static String getBase64Security() {
+        return Base64.getEncoder().encodeToString("vcGEm1ww4LUiOcy26zFSPTht1SZPso9m".getBytes(StandardCharsets.UTF_8));
     }
 
 }
