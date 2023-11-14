@@ -59,14 +59,6 @@ public class DataProviderController extends BaseController {
         return ResponseData.success(dataProviderService.readTableColumns(config));
     }
 
-//    @Operation(description = "获取所有表格信息")
-//    @GetMapping(value = "/{sourceId}/{database}/{table}/columns")
-//    public ResponseData<Set<Column>> getTableInfo(@PathVariable String sourceId,
-//                                                  @PathVariable String database,
-//                                                  @PathVariable String table) throws SQLException {
-//
-//        return ResponseData.success(dataProviderService.readTableColumns(sourceId, database, table));
-//    }
 
 
 }

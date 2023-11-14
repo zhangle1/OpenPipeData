@@ -4,6 +4,7 @@ package org.pipeData.server.interceptor;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.pipeData.core.base.annotations.SkipLogin;
+import org.pipeData.core.base.consts.Const;
 import org.pipeData.core.base.exception.Exceptions;
 import org.pipeData.security.exception.AuthException;
 import org.pipeData.security.manager.OpenPipeSecurityManager;
@@ -31,11 +32,25 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
         Object controller = handlerMethod.getBean();
-
         // 判断特定的 Controller 类，根据需要进行修改
         if (controller instanceof SwaggerConfigResource || controller instanceof MultipleOpenApiWebMvcResource) {
             // 特定 Controller，放行请求
             return true;
+        }
+        Exception loginException = null;
+        String token = request.getHeader(Const.TOKEN);
+        if (token != null) {
+            try {
+                token = securityManager.login(token);
+                response.setHeader(Const.TOKEN, token);
+                return securityManager.isAuthenticated();
+            } catch (Exception e) {
+                loginException = e;
+            }
+        }
+
+        if (loginException != null) {
+            throw loginException;
         }
 
         Exceptions.tr(AuthException.class, "login.not-login");

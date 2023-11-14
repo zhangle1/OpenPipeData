@@ -136,7 +136,7 @@ public class JwtUtils {
 
     private static Claims getClaims(String token) {
         return Jwts.parser()
-                .setSigningKey(Application.getTokenSecret().getBytes(StandardCharsets.UTF_8))
+                .setSigningKey(getBase64Security())
                 .build()
                 .parseClaimsJws(token.trim())
                 .getBody();
